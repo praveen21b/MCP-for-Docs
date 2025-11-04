@@ -1,0 +1,9 @@
+baseURL = "http://localhost:1313/"
+languageCode = "en-us"
+title = "MCP for Docs"
+theme = "hugo-book"
+
+[params]
+  BookSection = "docs"
+  BookRepo = "https://github.com/praveen21b/MCP-for-Docs"
+  BookEditPath = "edit/main/docs/content"

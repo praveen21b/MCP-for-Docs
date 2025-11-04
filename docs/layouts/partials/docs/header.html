@@ -1,0 +1,25 @@
+<form id="mcp-search-form" onsubmit="searchMCP(event)">
+  <input type="text" id="mcp-search-input" placeholder="Search Docs..." />
+  <button type="submit">Search</button>
+</form>
+
+<div id="mcp-search-results"></div>
+
+<script>
+async function searchMCP(event) {
+  event.preventDefault();
+  const query = document.getElementById('mcp-search-input').value;
+  if (!query) return;
+
+  const res = await fetch(`http://127.0.0.1:6280/search?library=internaldocs&version=1.0.0&q=${encodeURIComponent(query)}`);
+  const data = await res.json();
+
+  const resultsDiv = document.getElementById('mcp-search-results');
+  resultsDiv.innerHTML = data.results.map(r => 
+    `<div>
+      <a href="${r.url}" target="_blank">${r.title}</a>
+      <p>${r.snippet}</p>
+    </div>`
+  ).join('');
+}
+</script>
